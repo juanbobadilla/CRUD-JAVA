@@ -63,14 +63,33 @@ import proyectoconect.conectar;
 
     @Override
     public boolean EliminarDatos(int identificacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean resultado=false;
+        try {
+            String query="DELETE FROM datos WHERE identificacion="+identificacion;
+            conex.conexion();
+            Statement st=conex.conex.createStatement();
+            int valor = st.executeUpdate(query);
+            if (valor>0) {
+                resultado = true;
+                JOptionPane.showMessageDialog(null, "dato Eliminado");
+            }
+            //cerramos los recursos
+            st.close();          
+            conex.conex.close();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ocurrio un error al eliminar");
+        }      
+        return resultado;
+        
+        
     }
 
     @Override
     public boolean ActualizarDatos(int identificacion, String nombre, String apellido1, String apellido2, String genero) {
         boolean resultado=false;
         try {
-            String query="UPDATE datos SET identificacion="+identificacion+", nombre="+nombre+", apellido1="+apellido1+", apellido2="+apellido2+", genero="+genero+" WHERE identificacion="+identificacion;
+            String query="UPDATE datos SET nombre='"+nombre+"', apellido1='"+apellido1+"', apellido2='"+apellido2+"', genero='"+genero+"' WHERE identificacion="+identificacion;
             conex.conexion();
             Statement st=conex.conex.createStatement();
             int valor = st.executeUpdate(query);
@@ -84,8 +103,7 @@ import proyectoconect.conectar;
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ocurrio un error al actualizar");
-        }
-        
+        }      
         return resultado;
     }
 

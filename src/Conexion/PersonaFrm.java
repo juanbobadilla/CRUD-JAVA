@@ -44,6 +44,7 @@ public class PersonaFrm extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtIdentificacion = new javax.swing.JTextField();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,6 +105,13 @@ public class PersonaFrm extends javax.swing.JFrame {
 
         txtIdentificacion.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
 
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -138,9 +146,11 @@ public class PersonaFrm extends javax.swing.JFrame {
                                 .addComponent(btnListar)
                                 .addGap(37, 37, 37)
                                 .addComponent(btnConsultar)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(btnActualizar)
-                .addGap(47, 47, 47))
+                .addGap(27, 27, 27)
+                .addComponent(btnEliminar)
+                .addGap(61, 61, 61))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,7 +182,8 @@ public class PersonaFrm extends javax.swing.JFrame {
                     .addComponent(btnInsertar)
                     .addComponent(btnListar)
                     .addComponent(btnConsultar)
-                    .addComponent(btnActualizar))
+                    .addComponent(btnActualizar)
+                    .addComponent(btnEliminar))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -205,6 +216,11 @@ public class PersonaFrm extends javax.swing.JFrame {
         Persona per =new Persona();
         per.ActualizarDatos(Integer.parseInt(txtIdentificacion.getText()), txtNombre.getText(), txtApellido1.getText(), txtApellido2.getText(), txtGenero.getText());
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        Persona per = new Persona();
+        per.EliminarDatos(Integer.parseInt(txtIdentificacion.getText()));
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,6 +260,7 @@ public class PersonaFrm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnInsertar;
     private javax.swing.JButton btnListar;
     private javax.swing.JLabel jLabel1;
